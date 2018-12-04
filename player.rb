@@ -15,9 +15,5 @@ class Players
 
   def remove_life
     @life = life - 1
-    game_over if life < 0
   end
-
-  def game_over
-    puts "Game over #{@name}."
 end

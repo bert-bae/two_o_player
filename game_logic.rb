@@ -10,20 +10,34 @@ class Game_Logic
     @current = @Player1
   end
 
+  def end_game(player)
+    puts "----------- Game Over ------------"
+    if @current == @Player1
+      @current == @Player2
+    else
+      @current == @Player1
+    end
+    puts "Game over! #{@current.name} won and has #{@current.life} point(s) left."
+  end
+
   def start_game
     while (@Player1.life > 0 && @Player2.life > 0)
+      puts "--------- Next Question ----------"
       question = Math_Question.new
       if @current == @Player1
         if !question.ask_question(@current)
           @current.remove_life
+          puts "P1: #{@Player1.life} left VS P2: #{@Player2.life} left"
         end
         @current = @Player2
       else
         if !question.ask_question(@current)
           @current.remove_life
+          puts "P1: #{@Player1.life} left VS P2: #{@Player2.life} left"
         end
         @current = @Player1
       end
     end
+    self.end_game(@current)
   end
 end
